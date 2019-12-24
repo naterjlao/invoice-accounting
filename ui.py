@@ -8,9 +8,6 @@
 #   Python tkinter: https://docs.python.org/3/library/tk.html
 ###############################################################################
 
-
-
-
 import tkinter as tk
 import backend
 import config
@@ -81,13 +78,13 @@ class Application(tk.Frame):
 		self.mainTitleLabel.grid(row=0, sticky=tk.W)
 		
 		# Invoice Number
-		self.invoiceNumberLabel = tk.Label(self, text="Invoice number (XXXX-XXXX):")
+		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % backend.InvoiceNum.returnFormatString()))
 		self.invoiceNumberLabel.grid(row=1,column=0)
 		self.invoiceNumberField = tk.Entry(self)
 		self.invoiceNumberField.grid(row=1,column=1)
 		
 		# Date
-		self.dateLabel = tk.Label(self, text="Date of issue (MM-DD-YY):")
+		self.dateLabel = tk.Label(self, text=("Date of issue (%s):" % backend.Date.returnFormatString()))
 		self.dateLabel.grid(row=1,column=2)
 		self.dateField = tk.Entry(self)
 		self.dateField.grid(row=1,column=3)
@@ -112,9 +109,3 @@ class Application(tk.Frame):
 		self.billToZipField = tk.Entry(self)
 		self.billToZipField.grid(row=6,column=1)
 	
-
-
-
-
-
-
