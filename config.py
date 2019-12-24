@@ -8,6 +8,6 @@
 ###############################################################################
 
 # Main window dimensions
-GUI_WIDTH = 600
-GUI_HEIGHT = 600
+GUI_WIDTH = 650
+GUI_HEIGHT = 800
 GUI_DIMENSIONS = str(GUI_WIDTH)+"x"+str(GUI_HEIGHT)
