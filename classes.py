@@ -1,15 +1,22 @@
 #!/usr/bin/python3
 ###############################################################################
-# File: backend.py
+# File: classes.py
 # Author: <NAME> (<EMAIL>)
 # Language: python3
 # Description:
-#   Obtains data from the Invoice GUI and processes information.
+#   Defines classes for the invoice application.
 ###############################################################################
 
-# TODO
-# - SQL management
-# - PDF exporting
+###############################################################################
+# Class definition of an invoice. Contains subfields of data types that
+# define an invoice.
+###############################################################################
+class Invoice:
+	def __init__():
+		# TODO
+		pass
+
+	# TODO
 
 ###############################################################################
 # Class definition of an invoice number. Invoice numbers need to a unique
@@ -92,19 +99,19 @@ class BillTable:
 		pass
 		
 	# Removes an element at an index
-	def remove(self,idx)
+	def remove(self,idx):
 		# TODO
 		pass
 	
 	# Sets the tax rate of the table
 	# Validates if the given rate is valid
-	def setTaxRate(self,rate)
+	def setTaxRate(self,rate):
 		# TODO
 		pass
 	
 	# Sets the discount rate of the table
 	# Validates if the given rate is valid
-	def setDiscountRate(self,rate)
+	def setDiscountRate(self,rate):
 		# TODO
 		pass
 		
@@ -114,12 +121,12 @@ class BillTable:
 		pass
 	
 	# Calculate the tax from the subtotal and the tax rate
-	def calcTax(self)
+	def calcTax(self):
 		# TODO
 		pass
 	
 	# Calculate the discount amount from the subtotal and the dicount rate
-	def calcDiscount(self)
+	def calcDiscount(self):
 		# TODO
 		pass
 	

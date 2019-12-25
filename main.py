@@ -4,7 +4,7 @@
 # Author: Nate Lao (lao.nathan95@gmail.com)
 # Language: python3
 # Description:
-#	Main running script for Accounting.
+#	Main running script for invoice application.
 ###############################################################################
 
 import tkinter as tk
