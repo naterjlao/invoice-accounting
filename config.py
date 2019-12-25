@@ -8,7 +8,7 @@
 ###############################################################################
 
 # Main window dimensions
-GUI_WIDTH = 1200
+GUI_WIDTH = 900
 GUI_HEIGHT = 800
 GUI_DIMENSIONS = str(GUI_WIDTH)+"x"+str(GUI_HEIGHT)
 
@@ -24,10 +24,9 @@ COMPANY_EMAIL = "admin@XYZ.com"
 COMPANY_WEBSITE = "www.XYZ.com"
 LEGAL_NOTICE = "--- legal notice placeholder ---"
 
-# Define a tuple that will describe the column headers of the table
-# Putting this here should set the design of the bill table
-# Length of the table and any references to fields should use this tuple
-TABLE_COLUMNS = ("Description", "Unit Cost", "Qty/Rate", "Amount")
+# Define a Dictionary that will describe the column id and header names of the table
+# Definition: {<id>:<header name>, ...}
+TABLE_COLUMNS = {"des":"Description", "cost":"Unit Cost", "qty":"Qty/Rate", "amt":"Amount"}
 
 
 # SQL Configuration

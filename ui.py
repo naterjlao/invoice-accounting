@@ -10,7 +10,7 @@
 
 import tkinter as tk
 import tkinter.ttk as ttk
-import backend
+import classes
 import config
 
 class Application(tk.Frame):
@@ -80,11 +80,11 @@ class Application(tk.Frame):
 		self.mainTitleLabel = tk.Label(self, text="INVOICE GENERATOR", anchor=tk.W, justify=tk.LEFT)
 		
 		# Invoice Number
-		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % backend.InvoiceNum.returnFormatString()))
+		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % classes.InvoiceNum.returnFormatString()))
 		self.invoiceNumberField = tk.Entry(self)
 		
 		# Date
-		self.dateLabel = tk.Label(self, text=("Date of issue (%s):" % backend.Date.returnFormatString()))
+		self.dateLabel = tk.Label(self, text=("Date of issue (%s):" % classes.Date.returnFormatString()))
 		self.dateField = tk.Entry(self)
 		
 		# Bill To Address
@@ -107,11 +107,16 @@ class Application(tk.Frame):
 		self.companyEmailLabel = tk.Label(self, text=config.COMPANY_EMAIL)
 		self.companyWebsiteLabel = tk.Label(self, text=config.COMPANY_WEBSITE)
 		
-		# Bill table
-		self.table = ttk.Treeview(self, columns=config.TABLE_COLUMNS)
-		
-		
-		
+		self.createTable()
+	
+	def createTable(self):
+		self.table = ttk.Treeview(self, columns=tuple(config.TABLE_COLUMNS.keys()), show='headings')
+
+		# set the headings to the appropriate name, else they will be empty
+		for key in config.TABLE_COLUMNS.keys():
+			self.table.heading(key,text=config.TABLE_COLUMNS.get(key))
+
+
 	def layoutGUI(self):
 		# TODO - right now using grid as our layout manager, might need to resort to something more aesthetically pleasing
 		self.mainTitleLabel.grid(row=0, sticky=tk.W)
@@ -135,12 +140,11 @@ class Application(tk.Frame):
 		self.companyPhoneLabel.grid(row=6,column=2)
 		self.companyEmailLabel.grid(row=7,column=2)
 		self.companyWebsiteLabel.grid(row=8,column=2)
+		
+		self.layoutTable()
+		
+	def layoutTable(self):
 		self.table.grid(row=9, columnspan=4)
-		
-		
-		
-		
-		
 		
 		
 		

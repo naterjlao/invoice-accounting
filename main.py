@@ -13,7 +13,6 @@ import config
 
 if __name__ == "__main__":
 	# Main runner
-	print("test")
 	root = tk.Tk()
 	root.geometry(config.GUI_DIMENSIONS)
 	app = ui.Application(master=root)
