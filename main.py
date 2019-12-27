@@ -14,6 +14,7 @@ import config
 if __name__ == "__main__":
 	# Main runner
 	root = tk.Tk()
+	root.wm_title(config.TITLE)
 	root.geometry(config.GUI_DIMENSIONS)
 	app = ui.Application(master=root)
 	app.mainloop()

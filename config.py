@@ -7,6 +7,8 @@
 #   Configuration settings for invoice application.
 ###############################################################################
 
+TITLE = "Outvoice"
+
 # Main window dimensions
 GUI_WIDTH = 900
 GUI_HEIGHT = 800

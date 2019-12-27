@@ -20,30 +20,7 @@ class Application(tk.Frame):
 		self.pack() # fill out the entire window
 		self.createGUI()
 		self.layoutGUI()
-		'''
-		# Labels
-		self.firstNameLabel = tk.Label(self, text="First Name:")
-		self.lastNameLabel = tk.Label(self, text="Last Name:")
-		self.firstNameLabel.grid(row=0)
-		self.lastNameLabel.grid(row=1)
-		
-		# Entry fields
-		self.firstNameEntry = tk.Entry(self)
-		self.lastNameEntry = tk.Entry(self)
-		self.firstNameEntry.grid(row=0,column=1)
-		self.lastNameEntry.grid(row=1,column=1)
-		
-		# Buttons
-		self.button = tk.Button(self,text="Hello World\n",command=self.message)
-		self.button.grid(row=3)		
-		self.quit = tk.Button(self,text="QUIT", fg = "red", command = self.master.destroy)
-		self.quit.grid(row=4)
-		'''
-		
-	'''	
-	def message(self):
-		print("Hello, %s %s.\n" % (self.firstNameEntry.get(),self.lastNameEntry.get()))
-	'''	
+	
 	###############################################################################
 	# An invoice form is comprised of the following elements:
 	# - Header:
@@ -77,7 +54,7 @@ class Application(tk.Frame):
 	def createGUI(self):
 	
 		# Main Title
-		self.mainTitleLabel = tk.Label(self, text="INVOICE GENERATOR", anchor=tk.W, justify=tk.LEFT)
+		#self.mainTitleLabel = tk.Label(self, text="INVOICE GENERATOR", anchor=tk.W, justify=tk.LEFT)
 		
 		# Invoice Number
 		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % classes.InvoiceNum.returnFormatString()))
@@ -106,7 +83,20 @@ class Application(tk.Frame):
 		self.companyPhoneLabel = tk.Label(self, text=config.COMPANY_PHONE)
 		self.companyEmailLabel = tk.Label(self, text=config.COMPANY_EMAIL)
 		self.companyWebsiteLabel = tk.Label(self, text=config.COMPANY_WEBSITE)
+	
+
+		# Enter Fields
+		self.fieldsEntryLabel = tk.Label(self, text="Enter Fields")
+		self.fieldsEntriesLabel = {}
+		self.fieldsEntries = {}
+		for f in config.TABLE_COLUMNS.keys():
+			self.fieldsEntriesLabel[f] = tk.Label(self, text=str(f)+":")
+			self.fieldsEntries[f] = tk.Entry(self)
 		
+		# Enter Button
+		self.fieldsEnterButton = tk.Button(self,text="Enter",command=self.fieldsEnterButtonHandler)
+
+		# Bill Table
 		self.createTable()
 	
 	def createTable(self):
@@ -119,7 +109,7 @@ class Application(tk.Frame):
 
 	def layoutGUI(self):
 		# TODO - right now using grid as our layout manager, might need to resort to something more aesthetically pleasing
-		self.mainTitleLabel.grid(row=0, sticky=tk.W)
+		#self.mainTitleLabel.grid(row=0, sticky=tk.W)
 		self.invoiceNumberLabel.grid(row=1,column=0)
 		self.invoiceNumberField.grid(row=1,column=1)
 		self.dateLabel.grid(row=1,column=2)
@@ -139,16 +129,40 @@ class Application(tk.Frame):
 		self.companyZipLabel.grid(row=5,column=2)
 		self.companyPhoneLabel.grid(row=6,column=2)
 		self.companyEmailLabel.grid(row=7,column=2)
-		self.companyWebsiteLabel.grid(row=8,column=2)
-		
+		self.companyWebsiteLabel.grid(row=8,column=2)	
+		self.fieldsEntryLabel.grid(row=9)
+		r = 10
+		c = 0
+		for f in config.TABLE_COLUMNS.keys():
+			self.fieldsEntriesLabel.get(f).grid(row=r,column=c)
+			self.fieldsEntries.get(f).grid(row=r+1,column=c)
+			c += 1
+		self.fieldsEnterButton.grid(row=12)
 		self.layoutTable()
 		
 	def layoutTable(self):
-		self.table.grid(row=9, columnspan=4)
+		self.table.grid(row=13, columnspan=4)
 		
-		
-		
-		
+	def updateTable(self):
+		# The Invoice objecft must be updated alongside the table.
+		# Since there is overhead associated with clearing out the entire
+		# GUI table, we will opt to support deletion and additions concurrently
+		pass
+
+
+	##############################################################################
+	# Handler Functions
+	##############################################################################
+
+	def fieldsEnterButtonHandler(self):
+		# TODO tester
+		# Note that there is a 'text' argument and that unique id's need to be utilized for syncronize deletions
+		# and subsequent additions
+		# TODO get() function to pull text from Entries
+		'''
+		self.table.insert('','end',values=("ffdfd","fdfd","fdfdf","Fdfdf"))
+		'''
+		pass
 		
 		
 	
