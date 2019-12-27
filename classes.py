@@ -12,11 +12,18 @@
 # define an invoice.
 ###############################################################################
 class Invoice:
-	def __init__():
-		# TODO
-		pass
+	def __init__(self):
+		self.id = InvoiceNum()
+		self.po_num = PONumber()  # used for company tracking -- different from in house invoice number
+		self.date = Date()
+		self.company = Company()  # contains Address
+		self.client = Company()  # contains Address
+		# Table of Transactions
+		self.bill_table = BillTable()
 
-	# TODO
+
+
+
 
 ###############################################################################
 # Class definition of an invoice number. Invoice numbers need to a unique
@@ -24,7 +31,7 @@ class Invoice:
 # depending on implementation.
 ###############################################################################
 class InvoiceNum:
-	def __init__():
+	def __init__(self):
 		# TODO
 		pass
 	
@@ -38,7 +45,7 @@ class InvoiceNum:
 # Class definition of a date.
 ###############################################################################
 class Date:
-	def __init__():
+	def __init__(self):
 		# TODO
 		pass
 		
@@ -52,28 +59,37 @@ class Date:
 # - Street Address
 # - City, State, Country
 # - Zip code
+# - PO Number
 ###############################################################################
 class Address:
-	def __init__():
-		# TODO
-		pass
-		
-	# TODO
-	
+	def __init__(self):
+		self.name = "business name"
+		self.address = "18824 Bent Willow"
+		self.city_state_country = "XXX, XXX, XXX"
+		self.zipcode = "XXXXX"
+
+class PONumber:
+	def __init__(self):
+		self.po_num = "ABCDEF"
+
+class PhoneNumber:
+	def __init__(self):
+		self.phone = "123-456-7890"
+
+class Website:
+	def __init__(self):
+		self.website = "www.xxx.com"
+
 ###############################################################################
 # Class definition of company. Includes fields for:
-#	- Company Name
-#	- Street Addr
-#	- City, State and Country
-#	- ZIP
-#	- phone number
-#	- email
-#	- website
 ###############################################################################
 class Company:
-	def __init__():
-		# TODO
-		pass
+	def __init__(self):
+		self.name = "FBI"
+		self.address = Address()
+		self.phone = PhoneNumber()
+		self.website = Website()
+		#TODO
 		
 	# TODO
 	
@@ -88,7 +104,7 @@ class Company:
 #		- Total Balance Cost
 ###############################################################################
 class BillTable:
-	def __init__():
+	def __init__(self):
 		# TODO
 		pass
 	
