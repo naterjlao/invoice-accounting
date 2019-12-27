@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ###############################################################################
 # File: classes.py
-# Author: <NAME> (<EMAIL>)
+# Author: Oscar Quintanilla (oquintanilla0@gmai.com)
 # Language: python3
 # Description:
 #   Defines classes for the invoice application.

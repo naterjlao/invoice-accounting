@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ###############################################################################
 # File: util.py
-# Author: <NAME> (<EMAIL>)
+# Author: Oscar Quintanilla (Oquintanilla0@gmail.com)
 # Language: python3
 # Description:
 #   Defines utility functions for the invoice application.
