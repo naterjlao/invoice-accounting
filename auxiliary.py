@@ -1,33 +1,37 @@
 #!/usr/bin/python3
 ###############################################################################
-# File: util.py
+# File: auxiliary.py
 # Authors: Oscar Quintanilla (Oquintanilla0@gmail.com)
 #          Nate Lao (lao.nathan95@gmail.com)
 # Language: python3
 # Description:
-#   Defines utility functions for the invoice application.
+#   Defines classes and functions for PDF exports and SQL handling.
 ###############################################################################
 
 # Propietary
 import config
+import utils
+import classes
+
+# Wrapper for debug messages
+def debug(message):
+	utils.debug(message,type="auxiliary")
 
 ###############################################################################
-# Output to terminal (if DEBUG is true in config.py)
+# Processes the given invoice and generates a PDF file.
+# Arguments:
+# - invoice: a classes.Invoice object representing the data to be exported
+# - dst: an absolute path to where the PDF file will be exported to
 ###############################################################################
-def debug(message,type=""):
-	if (config.DEBUG):
-		print ("%s: %s" % (type,message))
-
+def exportPDF(invoice: classes.Invoice, dst: str):
+	# TODO
+	pass
 
 ###############################################################################
-# Output to log (if LOG is true in config.py)
+# Updates the SQL server on host
+# Arguments:
+# - invoice: a classes.Invoice object representing the data to be exported
 ###############################################################################
-class Logger:
-	def __init__(self):
-		# TODO use roundrobin on log
-		# TODO set designated place based on OS architect
-		pass
-	
-	def log(self):
-		pass
-
+def updateSQL(invoice: classes.Invoice):
+	# TODO
+	pass
