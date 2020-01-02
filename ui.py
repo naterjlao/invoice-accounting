@@ -66,6 +66,8 @@ class Application(tk.Frame):
 	###############################################################################
 	def createGUI(self):
 		
+		self.createMenuBar()
+		
 		# Invoice Number
 		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % classes.InvoiceNum.returnFormatString()))
 		self.invoiceNumberField = tk.Entry(self)
@@ -152,14 +154,60 @@ class Application(tk.Frame):
 		
 	def layoutTable(self):
 		self.table.grid(row=13, columnspan=4)
+
+	def createMenuBar(self):
+		# Menu Bar
+		self.menuBar = tk.Menu(self.master)
+		self.master.config(menu=self.menuBar)
+		
+		# "File" submenu
+		self.fileMenu = tk.Menu(self.menuBar,tearoff=0) # disable tearoff: --- (opens menu popup)
+		self.fileMenu.add_command(label="New", command=None)
+		self.fileMenu.add_command(label="Open...", command=None)
+		self.fileMenu.add_command(label="Save", command=None)
+		self.fileMenu.add_command(label="Save As...", command=None)
+		self.fileMenu.add_command(label="Export...", command=None)
+		self.fileMenu.add_command(label="Exit", command=self.exit)
+		
+		# "Edit" submenu
+		self.editMenu = tk.Menu(self.menuBar,tearoff=0)
+		# TODO: support for undo and redo?
+		#self.editMenu.add_command(label="Exit", command=self.exit)
+		
+		# "Search" submenu
+		self.searchMenu = tk.Menu(self.menuBar,tearoff=0)
+		self.searchMenu.add_command(label="Find...", command=None)
+		self.searchMenu.add_command(label="Replace...", command=None)
+		self.searchMenu.add_command(label="Query...", command=None)
+		
+		# "View" submenu
+		self.viewMenu = tk.Menu(self.menuBar,tearoff=0)
+		# TODO: what could we add here?
+		#self.viewMenu.add_command(label="Exit", command=self.exit)
+		
+		# "Settings" submenu
+		self.settingsMenu = tk.Menu(self.menuBar,tearoff=0)
+		self.settingsMenu.add_command(label="SQL Configuration...", command=None)
+		
+		# Add top header rows (based on notepad menu bar)
+		self.menuBar.add_cascade(label="File", menu=self.fileMenu)
+		self.menuBar.add_cascade(label="Edit", menu=self.editMenu)
+		self.menuBar.add_cascade(label="Search", menu=self.searchMenu)
+		self.menuBar.add_cascade(label="View", menu=self.viewMenu)
+		self.menuBar.add_cascade(label="Settings", menu=self.settingsMenu)
+
 		
 	def updateTable(self):
 		debug("Updating table")
-		# The Invoice objecft must be updated alongside the table.
+		# The Manager must be updated alongside the table.
 		# Since there is overhead associated with clearing out the entire
 		# GUI table, we will opt to support deletion and additions concurrently
 		pass
 
-		
+
+
+	def exit(self):
+		debug("Exiting... Bye!!!")
+		self.master.destroy()
 		
 	
