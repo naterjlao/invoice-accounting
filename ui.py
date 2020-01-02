@@ -10,15 +10,28 @@
 
 import tkinter as tk
 import tkinter.ttk as ttk
+
+# Propietary
+import utils
 import classes
 import config
+import linker
+
+# Wrapper for debug messages
+def debug(message):
+	utils.debug(message,type="ui")
 
 class Application(tk.Frame):
-	def __init__(self,master=None):
+	def __init__(self,master=None,manager=None,logger=None):
 		super().__init__(master)
 		self.master = master
-		self.pack() # fill out the entire window
+		self.manager = manager # manager defines callbacks
+		self.logger = logger
+		
+		self.pack() # fill out the entire window in master
+		debug("Creating UI elements")
 		self.createGUI()
+		debug("Laying out UI elements")
 		self.layoutGUI()
 	
 	###############################################################################
@@ -52,9 +65,6 @@ class Application(tk.Frame):
 	#	- Legal statements
 	###############################################################################
 	def createGUI(self):
-	
-		# Main Title
-		#self.mainTitleLabel = tk.Label(self, text="INVOICE GENERATOR", anchor=tk.W, justify=tk.LEFT)
 		
 		# Invoice Number
 		self.invoiceNumberLabel = tk.Label(self, text=("Invoice number (%s):" % classes.InvoiceNum.returnFormatString()))
@@ -94,7 +104,7 @@ class Application(tk.Frame):
 			self.fieldsEntries[f] = tk.Entry(self)
 		
 		# Enter Button
-		self.fieldsEnterButton = tk.Button(self,text="Enter",command=self.fieldsEnterButtonHandler)
+		self.fieldsEnterButton = tk.Button(self,text="Enter",command=self.manager.fieldsEnterButtonHandler)
 
 		# Bill Table
 		self.createTable()
@@ -144,25 +154,12 @@ class Application(tk.Frame):
 		self.table.grid(row=13, columnspan=4)
 		
 	def updateTable(self):
+		debug("Updating table")
 		# The Invoice objecft must be updated alongside the table.
 		# Since there is overhead associated with clearing out the entire
 		# GUI table, we will opt to support deletion and additions concurrently
 		pass
 
-
-	##############################################################################
-	# Handler Functions
-	##############################################################################
-
-	def fieldsEnterButtonHandler(self):
-		# TODO tester
-		# Note that there is a 'text' argument and that unique id's need to be utilized for syncronize deletions
-		# and subsequent additions
-		# TODO get() function to pull text from Entries
-		'''
-		self.table.insert('','end',values=("ffdfd","fdfd","fdfdf","Fdfdf"))
-		'''
-		pass
 		
 		
 	

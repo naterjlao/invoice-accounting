@@ -1,11 +1,19 @@
 #!/usr/bin/python3
 ###############################################################################
 # File: classes.py
-# Author: Oscar Quintanilla (oquintanilla0@gmai.com)
+# Author: Oscar Quintanilla (oquintanilla0@gmail.com)
 # Language: python3
 # Description:
 #   Defines classes for the invoice application.
 ###############################################################################
+
+# Propietary
+import config
+import utils
+
+# Wrapper for debug messages
+def debug(message):
+	utils.debug(message,type="classes")
 
 ###############################################################################
 # Class definition of an invoice. Contains subfields of data types that
@@ -20,10 +28,6 @@ class Invoice:
 		self.client = Company()  # contains Address
 		# Table of Transactions
 		self.bill_table = BillTable()
-
-
-
-
 
 ###############################################################################
 # Class definition of an invoice number. Invoice numbers need to a unique

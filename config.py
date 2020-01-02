@@ -7,7 +7,11 @@
 #   Configuration settings for invoice application.
 ###############################################################################
 
-TITLE = "Outvoice"
+DEBUG = True # Set to true to output to terminal
+LOG = True # Set to true to output to log file
+
+# Application information
+APP_TITLE = "Outvoice"
 
 # Main window dimensions
 GUI_WIDTH = 900
