@@ -1,0 +1,12 @@
+packaging that actually works?
+https://pypi.org/project/pynsist/
+https://packaging.python.org/overview/
+
+pushes the entire python lib into install directory
+only for windows
+
+-could be used to push the correct Python directory to the folder (need to check if this is so)
+-makes an installer, but this is useless
+-need to be in conjunction with the vstudio installer
+    -- or just vstudio by itself
+-needs a link towards a icon on desktop

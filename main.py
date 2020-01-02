@@ -19,7 +19,7 @@ import utils
 def debug(message):
 	utils.debug(message,type="main")
 
-if __name__ == "__main__":
+def main():
 	# Create a Logger at startup
 	logger = utils.Logger()
 	# Manager
@@ -30,4 +30,7 @@ if __name__ == "__main__":
 	mainWindow.geometry(config.GUI_DIMENSIONS)
 	app = ui.Application(master=mainWindow,manager=manager,logger=logger)
 	app.mainloop()
+	
+if __name__ == "__main__":
+	main()
 	
