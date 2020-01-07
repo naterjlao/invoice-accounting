@@ -1,3 +1,9 @@
 ensure that there are no circular dependencies
 dependency chart (updated 0c1b8c9ccf2211858a5bfd28cba777b06f63d754)
 https://drive.google.com/file/d/1_fdylQPXfruR4h9RrE3tcg4qhJn_HSlm/view?usp=sharing
+
+
+Creating PDFs and PDF tables in Python using pyfpdf:
+https://www.blog.pythonlibrary.org/2018/06/05/creating-pdfs-with-pyfpdf-and-python/
+
+
