@@ -34,6 +34,13 @@ LEGAL_NOTICE = "--- legal notice placeholder ---"
 # Definition: {<id>:<header name>, ...}
 TABLE_COLUMNS = {"des":"Description", "cost":"Unit Cost", "qty":"Qty/Rate", "amt":"Amount"}
 
+# PDF Settings
+PDF_PAPER_SIZE = "letter"
+PDF_FONT = "times" # Times New Roman
+# The form of a invoice filename will be the following:
+# (PDF_FILE_PREFIX)_<PO Number>.(PDF_FILE_EXTENS)
+PDF_FILE_PREFIX = "invoice"
+PDF_FILE_EXTENS = "pdf"
 
 # SQL Configuration
 # TODO Define any necessary configurations for linking the application
