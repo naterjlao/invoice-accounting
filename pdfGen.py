@@ -5,6 +5,8 @@
 # Language: python3
 # Description:
 #   Constructs, designs and generates a PDF for invoices.
+#   https://www.blog.pythonlibrary.org/2018/06/05/creating-pdfs-with-pyfpdf-and-python/
+#   https://pyfpdf.readthedocs.io/en/latest/index.html
 ###############################################################################
 
 import fpdf

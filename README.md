@@ -1,6 +1,6 @@
 # Invoice Manager
 ## Authors
-* Oscar Quintanilla
+* Oscar Quintanilla (oquintanilla0@gmail.com)
 * Nate Lao (lao.nathan95@gmail.com)
 ## Description:
 GUI manager for business invoices.
@@ -13,3 +13,4 @@ GUI manager for business invoices.
 * python3
 * tkinter
 * MySQL
+* [PyFPDF](https://pyfpdf.readthedocs.io/en/latest/index.html) 
