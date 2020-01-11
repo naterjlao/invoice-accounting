@@ -98,11 +98,11 @@ class Application(tk.Frame):
 	
 
 		# Enter Fields
-		self.fieldsEntryLabel = tk.Label(self, text="Enter Fields")
+		#self.fieldsEntryLabel = tk.Label(self, text="Transaction Entry")
 		self.fieldsEntriesLabel = {}
 		self.fieldsEntries = {}
 		for f in config.TABLE_COLUMNS.keys():
-			self.fieldsEntriesLabel[f] = tk.Label(self, text=str(f)+":")
+			self.fieldsEntriesLabel[f] = tk.Label(self, text=str(config.TABLE_COLUMNS.get(f))+":")
 			self.fieldsEntries[f] = tk.Entry(self)
 		
 		# Enter Button
@@ -142,14 +142,14 @@ class Application(tk.Frame):
 		self.companyPhoneLabel.grid(row=6,column=2)
 		self.companyEmailLabel.grid(row=7,column=2)
 		self.companyWebsiteLabel.grid(row=8,column=2)	
-		self.fieldsEntryLabel.grid(row=9)
+		#self.fieldsEntryLabel.grid(row=9)
 		r = 10
 		c = 0
 		for f in config.TABLE_COLUMNS.keys():
 			self.fieldsEntriesLabel.get(f).grid(row=r,column=c)
 			self.fieldsEntries.get(f).grid(row=r+1,column=c)
 			c += 1
-		self.fieldsEnterButton.grid(row=12)
+		self.fieldsEnterButton.grid(row=9)
 		self.layoutTable()
 		
 	def layoutTable(self):
@@ -203,8 +203,6 @@ class Application(tk.Frame):
 		# Since there is overhead associated with clearing out the entire
 		# GUI table, we will opt to support deletion and additions concurrently
 		pass
-
-
 
 	def exit(self):
 		debug("Exiting... Bye!!!")
