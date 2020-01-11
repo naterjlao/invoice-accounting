@@ -106,7 +106,7 @@ class Application(tk.Frame):
 			self.fieldsEntries[f] = tk.Entry(self)
 		
 		# Enter Button
-		self.fieldsEnterButton = tk.Button(self,text="Enter",command=self.manager.fieldsEnterButtonHandler)
+		self.fieldsEnterButton = tk.Button(self,text="Enter",command=lambda: self.callback("fieldsEnterButtonHandler"))
 
 		# Bill Table
 		self.createTable()
@@ -162,12 +162,12 @@ class Application(tk.Frame):
 		
 		# "File" submenu
 		self.fileMenu = tk.Menu(self.menuBar,tearoff=0) # disable tearoff: --- (opens menu popup)
-		self.fileMenu.add_command(label="New", command=None)
-		self.fileMenu.add_command(label="Open...", command=None)
-		self.fileMenu.add_command(label="Save", command=None)
-		self.fileMenu.add_command(label="Save As...", command=None)
-		self.fileMenu.add_command(label="Export...", command=None)
-		self.fileMenu.add_command(label="Exit", command=self.exit)
+		self.fileMenu.add_command(label="New", command=lambda: self.callback("newInvoiceHandler"))
+		self.fileMenu.add_command(label="Open...", command=lambda: self.callback("openInvoiceHandler"))
+		self.fileMenu.add_command(label="Save", command=lambda: self.callback("saveInvoiceHandler"))
+		self.fileMenu.add_command(label="Save As...", command=lambda: self.callback("saveAsInvoiceHandler"))
+		self.fileMenu.add_command(label="Export...", command=lambda: self.callback("exportInvoiceHandler"))
+		self.fileMenu.add_command(label="Exit", command=lambda: self.callback("exit"))
 		
 		# "Edit" submenu
 		self.editMenu = tk.Menu(self.menuBar,tearoff=0)
@@ -176,9 +176,9 @@ class Application(tk.Frame):
 		
 		# "Search" submenu
 		self.searchMenu = tk.Menu(self.menuBar,tearoff=0)
-		self.searchMenu.add_command(label="Find...", command=None)
-		self.searchMenu.add_command(label="Replace...", command=None)
-		self.searchMenu.add_command(label="Query...", command=None)
+		self.searchMenu.add_command(label="Find...", command=lambda: self.callback("UNIMPLEMENTED"))
+		self.searchMenu.add_command(label="Replace...", command=lambda: self.callback("UNIMPLEMENTED"))
+		self.searchMenu.add_command(label="Query...", command=lambda: self.callback("UNIMPLEMENTED"))
 		
 		# "View" submenu
 		self.viewMenu = tk.Menu(self.menuBar,tearoff=0)
@@ -187,7 +187,7 @@ class Application(tk.Frame):
 		
 		# "Settings" submenu
 		self.settingsMenu = tk.Menu(self.menuBar,tearoff=0)
-		self.settingsMenu.add_command(label="SQL Configuration...", command=None)
+		self.settingsMenu.add_command(label="SQL Configuration...", command=lambda: self.callback("UNIMPLEMENTED"))
 		
 		# Add top header rows (based on notepad menu bar)
 		self.menuBar.add_cascade(label="File", menu=self.fileMenu)
@@ -207,5 +207,30 @@ class Application(tk.Frame):
 	def exit(self):
 		debug("Exiting... Bye!!!")
 		self.master.destroy()
+		
+	# Add an extra layer of callbacks to button and the manager object to
+	# save time between processing and handling more complex operations
+	# that involve extracting data from fields.
+	def callback(self,call=None):
+		if call == "UNIMPLEMENTED":
+			debug("Error callback not linked to any action")
+		elif call == "exit":
+			self.exit()
+		elif call == "newInvoiceHandler":
+			self.manager.newInvoiceHandler()
+		elif call == "openInvoiceHandler":
+			self.manager.openInvoiceHandler()
+		elif call == "saveInvoiceHandler":
+			self.manager.saveInvoiceHandler()
+		elif call == "saveAsInvoiceHandler":
+			self.manager.saveAsInvoiceHandler()
+		elif call == "exportInvoiceHandler":
+			self.manager.exportInvoiceHandler()
+		elif call == "fieldsEnterButtonHandler":
+			# TODO retrieve the respective fields for insertion
+		
+			self.manager.fieldsEnterButtonHandler()
+		elif call == None:
+			debug("Error: no call given to callback action")
 		
 	

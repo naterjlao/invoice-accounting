@@ -24,6 +24,9 @@ class Invoice:
 		self.client = Company()  # contains Address
 		# Table of Transactions
 		self.bill_table = BillTable()
+		
+	def enterFields(self,descrip,cost,quant):
+		self.bill_table.add(descrip,cost,quant)
 
 ###############################################################################
 # Class definition of an invoice number. Invoice numbers need to a unique
@@ -106,8 +109,10 @@ class Company:
 class BillTable:
 	def __init__(self):
 		self.table = []
+		self.tableMutate = False
 		self.taxRate = 0
 		self.totatBalance = 0
+		self.subtotal = 0
 		
 	class Entry:
 		def __init__(self,descrip,cost,quant):
@@ -134,40 +139,41 @@ class BillTable:
 	# Adds an element to the table.
 	# Amount is calculated with cost x quant
 	def add(self,descrip,cost,quant):
+		self.tableMutate = True
 		self.table.append(Entry(descrip,cost,quant))
 		
 	# Removes an element at an index
 	def remove(self,idx):
+		self.tableMutate = True
 		return self.table.pop(idx)
 	
 	# Sets the tax rate of the table
 	# Validates if the given rate is valid
 	def setTaxRate(self,rate):
-		# TODO
-		pass
+		self.taxRate = rate
 	
 	# Sets the discount rate of the table
 	# Validates if the given rate is valid
 	def setDiscountRate(self,rate):
-		# TODO
-		pass
+		self.discountRate = rate
 		
 	# Calculate subtotal of all cost amounts before taxes and discounts
 	def calcSubtotal(self):
-		# TODO
-		pass
+		if (self.tableMutate):			
+			self.subtotal = 0
+			for entry in self.table:
+				self.subtotal += entry.amount
+		self.tableMutate = False
+		return self.subtotal
 	
 	# Calculate the tax from the subtotal and the tax rate
 	def calcTax(self):
-		# TODO
-		pass
+		return self.calcSubtotal() * self.taxRate
 	
 	# Calculate the discount amount from the subtotal and the dicount rate
 	def calcDiscount(self):
-		# TODO
-		pass
+		return self.calcSubtotal() * self.discountRate
 	
 	# Calculate the total balance based on the calculated tax and discount amount
 	def calcTotalBalance(self):
-		# TODO
-		pass
+		return self.calcSubtotal - self.calcDiscount() + self.calcTax()
