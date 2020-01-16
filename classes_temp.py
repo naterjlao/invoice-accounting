@@ -24,7 +24,25 @@ class Invoice:
 		self.client = Company()  # contains Address
 		# Table of Transactions
 		self.bill_table = BillTable()
-		
+
+	def returnString(self):
+		delim = "\n\n"
+		result = ""
+		result+= "Invoice ID: " + self.id.returnString() + delim
+		result+= "PO Number: " + self.po_num.returnString() + delim
+		result+= "Date: " + self.date.returnString() + delim
+		result+= "Company:\n" + self.company.returnString() + delim
+		result+= "Client:\n" + self.client.returnString()
+		# TODO bill table
+		return result
+
+	def setDate(self,day,month,year):
+		self.date.setDate(day,month,year)
+	
+	def setCompany(self):
+		pass
+		# TODO
+
 	def enterFields(self,descrip,cost,quant):
 		self.bill_table.add(descrip,cost,quant)
 
@@ -35,23 +53,28 @@ class Invoice:
 ###############################################################################
 class InvoiceNum:
 	def __init__(self):
-		# TODO
-		pass
+		self.invoiceNum = (12345,67890)
 	
+	def returnString(self):
+		return "%d-%d" % self.invoiceNum
+
 	# Returns the format string of an invoice number (ie. "XXXX-XXXX")
 	def returnFormatString():
 		return "XXXX-XXXX"
 		
-	# TODO
 	
 ###############################################################################
 # Class definition of a date.
 ###############################################################################
 class Date:
 	def __init__(self):
-		# TODO
-		pass
+		self.day = 0
+		self.month = 0
+		self.year = 0
 		
+	def returnString(self):
+		return "%d-%d-%d" % (self.month,self.day,self.year)
+
 	# Returns the format string of a date (ie. "MM-DD-YY")
 	def returnFormatString():
 		return "MM-DD-YY"
@@ -66,35 +89,54 @@ class Date:
 ###############################################################################
 class Address:
 	def __init__(self):
-		self.name = "business name"
-		self.address = "18824 Bent Willow"
-		self.city_state_country = "XXX, XXX, XXX"
-		self.zipcode = "XXXXX"
+		self.street_address = "12345 Placeholder Address"
+		self.city_state_country = "Placeholder City, State, Country"
+		self.zipcode = "12345"
+
+	def returnString(self):
+		return "%s\n%s\n%s" % (self.street_address,self.city_state_country,self.zipcode)
 
 class PONumber:
 	def __init__(self):
-		self.po_num = "ABCDEF"
+		self.po_num = 12345
+
+	def returnString(self):
+		return str(self.po_num)
 
 class PhoneNumber:
 	def __init__(self):
 		self.phone = "123-456-7890"
 
+	def returnString(self):
+		return self.phone
+
 class Website:
 	def __init__(self):
-		self.website = "www.xxx.com"
+		self.website = "www.placeholder.com"
+
+	def returnString(self):
+		return self.website
+
 
 ###############################################################################
 # Class definition of company. Includes fields for:
 ###############################################################################
 class Company:
 	def __init__(self):
-		self.name = "FBI"
+		self.name = "Placeholder Company"
 		self.address = Address()
 		self.phone = PhoneNumber()
 		self.website = Website()
 		#TODO
 		
-	# TODO
+	def returnString(self):
+		result = ""
+		result+= self.name + "\n"
+		result+= self.address.returnString() + "\n"
+		result+= self.phone.returnString() + "\n"
+		result+= self.website.returnString()
+		
+		return result
 	
 ###############################################################################
 # Class definition of a table of bills. Includes columns for:
