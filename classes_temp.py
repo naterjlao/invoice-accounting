@@ -147,24 +147,36 @@ class Company:
 #		- Tax rate
 #		- Tax
 #		- Total Balance Cost
+# The way that discount rate and tax rate is calculated is done through the
+# the subtotals of items before any final value is calculated.
+# Therefore, the discount amount and tax amount are independent of each other.
+# The difference (sum amount) is only calculated once requested by the user.
 ###############################################################################
 class BillTable:
 	def __init__(self):
 		self.table = []
 		self.tableMutate = False
 		self.taxRate = 0
-		self.totatBalance = 0
+		self.totalBalance = 0
+		self.discountRate = 0
 		self.subtotal = 0
 		
+	def __str__(self):
+		result = ""
+		for e in self.table:
+			result += str(e)
+			result += '\n'
+		return result
+			
 	class Entry:
 		def __init__(self,descrip,cost,quant):
 			self.descrip=descrip
 			self.cost=cost
 			self.quant=quant
-			self.updateAmount()
+			self.amount=self.getAmount()
 			
 		def __str__(self):
-			print("%s: %d x %d = %d" % (self.descrip,self.cost,self.quant))
+			return ("%s: cost=%f quantity=%f amount=%f" % (self.descrip,self.cost,self.quant,self.amount))
 			
 		def updateDescription(self,descrip):
 			self.descript = descript
@@ -175,14 +187,14 @@ class BillTable:
 		def updateQuant(self,quant):
 			self.quant = quant
 			
-		def updateAmount(self):
-			self.amount = self.cost * self.quant
+		def getAmount(self):
+			return self.cost * self.quant
 	
 	# Adds an element to the table.
 	# Amount is calculated with cost x quant
 	def add(self,descrip,cost,quant):
 		self.tableMutate = True
-		self.table.append(Entry(descrip,cost,quant))
+		self.table.append(BillTable.Entry(descrip,cost,quant))
 		
 	# Removes an element at an index
 	def remove(self,idx):
@@ -218,4 +230,4 @@ class BillTable:
 	
 	# Calculate the total balance based on the calculated tax and discount amount
 	def calcTotalBalance(self):
-		return self.calcSubtotal - self.calcDiscount() + self.calcTax()
+		return self.calcSubtotal() - self.calcDiscount() + self.calcTax()
