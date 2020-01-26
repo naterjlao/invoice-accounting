@@ -25,15 +25,15 @@ class Invoice:
 		# Table of Transactions
 		self.bill_table = BillTable()
 
-	def returnString(self):
+	def __str__(self):
 		delim = "\n\n"
 		result = ""
-		result+= "Invoice ID: " + self.id.returnString() + delim
-		result+= "PO Number: " + self.po_num.returnString() + delim
-		result+= "Date: " + self.date.returnString() + delim
-		result+= "Company:\n" + self.company.returnString() + delim
-		result+= "Client:\n" + self.client.returnString()
-		# TODO bill table
+		result+= "Invoice ID: " + str(self.id) + delim
+		result+= "PO Number: " + str(self.po_num) + delim
+		result+= "Date: " + str(self.date) + delim
+		result+= "Company:\n" + str(self.company) + delim
+		result+= "Client:\n" + str(self.client)
+		result+= "Bill Table:\n" + str(self.bill_table)
 		return result
 
 	def setDate(self,day,month,year):
@@ -55,7 +55,7 @@ class InvoiceNum:
 	def __init__(self):
 		self.invoiceNum = (12345,67890)
 	
-	def returnString(self):
+	def __str__(self):
 		return "%d-%d" % self.invoiceNum
 
 	# Returns the format string of an invoice number (ie. "XXXX-XXXX")
@@ -72,7 +72,7 @@ class Date:
 		self.month = 0
 		self.year = 0
 		
-	def returnString(self):
+	def __str__(self):
 		return "%d-%d-%d" % (self.month,self.day,self.year)
 
 	# Returns the format string of a date (ie. "MM-DD-YY")
@@ -93,28 +93,28 @@ class Address:
 		self.city_state_country = "Placeholder City, State, Country"
 		self.zipcode = "12345"
 
-	def returnString(self):
+	def __str__(self):
 		return "%s\n%s\n%s" % (self.street_address,self.city_state_country,self.zipcode)
 
 class PONumber:
 	def __init__(self):
 		self.po_num = 12345
 
-	def returnString(self):
+	def __str__(self):
 		return str(self.po_num)
 
 class PhoneNumber:
 	def __init__(self):
 		self.phone = "123-456-7890"
 
-	def returnString(self):
+	def __str__(self):
 		return self.phone
 
 class Website:
 	def __init__(self):
 		self.website = "www.placeholder.com"
 
-	def returnString(self):
+	def __str__(self):
 		return self.website
 
 
@@ -129,12 +129,12 @@ class Company:
 		self.website = Website()
 		#TODO
 		
-	def returnString(self):
+	def __str__(self):
 		result = ""
 		result+= self.name + "\n"
-		result+= self.address.returnString() + "\n"
-		result+= self.phone.returnString() + "\n"
-		result+= self.website.returnString()
+		result+= str(self.address) + "\n"
+		result+= str(self.phone) + "\n"
+		result+= str(self.website)
 		
 		return result
 	

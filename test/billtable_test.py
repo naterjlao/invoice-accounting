@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ###############################################################################
-# File: BillTableUnitTests.py
+# File: billtable_test.py
 # Author: Nate Lao (lao.nathan95@gmail.com)
 # Language: python3
 # Description:
